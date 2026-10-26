@@ -1,6 +1,6 @@
 {
   "name": "bare-stow-protocol",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Control and user data framing for bare-stow",
   "exports": {
     "./package": "./package.json",
