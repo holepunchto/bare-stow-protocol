@@ -1,0 +1,51 @@
+{
+  "name": "bare-stow-protocol",
+  "version": "0.0.0",
+  "description": "Control and user data framing for bare-stow",
+  "exports": {
+    "./package": "./package.json",
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  },
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "format": "prettier --write . && lunte --fix",
+    "lint": "prettier --check . && lunte",
+    "test": "npm run test:bare && npm run test:node",
+    "test:bare": "brittle-bare --coverage test.js",
+    "test:node": "brittle-node --coverage test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holepunchto/bare-stow-protocol.git"
+  },
+  "author": "Holepunch",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/holepunchto/bare-stow-protocol/issues"
+  },
+  "homepage": "https://github.com/holepunchto/bare-stow-protocol#readme",
+  "dependencies": {
+    "b4a": "^1.6.0",
+    "bare-stream": "^2.13.1"
+  },
+  "devDependencies": {
+    "brittle": "^4.0.2",
+    "lunte": "^1.7.0",
+    "prettier": "^3.3.3",
+    "prettier-config-holepunch": "^2.0.0"
+  },
+  "peerDependencies": {
+    "bare-buffer": "^3.6.0"
+  },
+  "peerDependenciesMeta": {
+    "bare-buffer": {
+      "optional": true
+    }
+  }
+}
