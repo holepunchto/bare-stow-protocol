@@ -22,8 +22,8 @@ class Protocol extends Duplex {
 
     stream
       .on('data', (chunk) => this._ondata(chunk))
-      .on('end', () => this.push(null))
-      .on('close', () => this.destroy())
+      .on('end', () => this._onend())
+      .on('close', () => this._onclose())
       .on('error', (err) => this._onerror(err))
   }
 
@@ -48,6 +48,14 @@ class Protocol extends Duplex {
   _destroy(err, cb) {
     this._stream.destroy()
     cb(null)
+  }
+
+  _onend() {
+    this.push(null)
+  }
+
+  _onclose() {
+    this.destroy()
   }
 
   _onerror(err) {
@@ -107,6 +115,8 @@ class Protocol extends Duplex {
 
       if (message.type === 'error') {
         const err = new Error(message.message)
+
+        err.code = 'WORKER_ERROR'
 
         if (message.stack) err.stack = message.stack
 
